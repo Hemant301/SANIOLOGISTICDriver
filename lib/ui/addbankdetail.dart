@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:saniologisticdriver/api/regisrtApi.dart';
@@ -21,6 +23,37 @@ class _AddbankDetailsState extends State<AddbankDetails> {
   TextEditingController accounNumberController = TextEditingController();
   bool loading = false;
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getProfile();
+  }
+
+  Map getProfileData = {};
+
+  getProfile() async {
+    RegisterApi api = RegisterApi();
+    Map data = await api.grtprofileDataApi();
+    setState(() {
+      getProfileData = data['data'];
+      if (data['status'] == true) {
+        bankNameController.text = getProfileData['bank_details']['name'];
+        acountTypeController.text =
+            getProfileData['bank_details']['account_type'];
+        branchAddressController.text = getProfileData['bank_details']['branch'];
+        accountHolderController.text =
+            getProfileData['bank_details']['account_holder'];
+        branchAddressController.text =
+            getProfileData['bank_details']['branch_address'];
+        ifscController.text = getProfileData['bank_details']['ifsc_code'];
+        broanchNameController.text = getProfileData['bank_details']['branch'];
+        accounNumberController.text =
+            getProfileData['bank_details']['account_number'];
+      }
+    });
+    log(getProfileData.toString());
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade300,
@@ -137,7 +170,7 @@ class _AddbankDetailsState extends State<AddbankDetails> {
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.BOTTOM,
                                 timeInSecForIosWeb: 1,
-                                backgroundColor: Colors.red,
+                                backgroundColor: Colors.green,
                                 textColor: Colors.white,
                                 fontSize: 16.0);
                             setState(() {

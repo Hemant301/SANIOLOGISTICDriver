@@ -1,8 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:saniologisticdriver/api/regisrtApi.dart';
 import 'package:saniologisticdriver/shareFunction/testfiledss.dart';
 
-class IdScreen extends StatelessWidget {
+class IdScreen extends StatefulWidget {
   const IdScreen({super.key});
+
+  @override
+  State<IdScreen> createState() => _IdScreenState();
+}
+
+class _IdScreenState extends State<IdScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
+
+  getData() async {
+    Map data = await callApi.getDriverId();
+    if (data['status'] == true) {
+      setState(() {
+        driverData = data['data'];
+      });
+    }
+  }
+
+  Map driverData = {};
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +104,7 @@ class IdScreen extends StatelessWidget {
                           children: [
                             Row(
                               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
+                              children: [
                                 Text(
                                   "Driver Id      :  ",
                                   style: TextStyle(
@@ -88,7 +112,7 @@ class IdScreen extends StatelessWidget {
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text("745556666",
+                                Text("${driverData['driverID']}",
                                     style: TextStyle(
                                       color: Colors.white,
                                     ))
@@ -99,7 +123,7 @@ class IdScreen extends StatelessWidget {
                             ),
                             Row(
                               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
+                              children: [
                                 Text(
                                   "Name           :  ",
                                   style: TextStyle(
@@ -107,7 +131,7 @@ class IdScreen extends StatelessWidget {
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text("74556",
+                                Text("${driverData['name']}",
                                     style: TextStyle(
                                       color: Colors.white,
                                     ))
@@ -118,7 +142,7 @@ class IdScreen extends StatelessWidget {
                             ),
                             Row(
                               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
+                              children: [
                                 Text(
                                   "ESI                :  ",
                                   style: TextStyle(
@@ -126,7 +150,7 @@ class IdScreen extends StatelessWidget {
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text("746",
+                                Text("${driverData['esi']}",
                                     style: TextStyle(
                                       color: Colors.white,
                                     ))
@@ -137,7 +161,7 @@ class IdScreen extends StatelessWidget {
                             ),
                             Row(
                               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
+                              children: [
                                 Text(
                                   "PF                 :  ",
                                   style: TextStyle(
@@ -145,7 +169,7 @@ class IdScreen extends StatelessWidget {
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text("745556666",
+                                Text("${driverData['pf']}",
                                     style: TextStyle(
                                       color: Colors.white,
                                     ))
@@ -156,7 +180,7 @@ class IdScreen extends StatelessWidget {
                             ),
                             Row(
                               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
+                              children: [
                                 Text(
                                   "MOB No       :  ",
                                   style: TextStyle(
@@ -164,7 +188,7 @@ class IdScreen extends StatelessWidget {
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text("745556666",
+                                Text("${driverData['phone']}",
                                     style: TextStyle(
                                       color: Colors.white,
                                     ))
@@ -175,7 +199,7 @@ class IdScreen extends StatelessWidget {
                             ),
                             Row(
                               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
+                              children: [
                                 Text(
                                   "Address       :  ",
                                   style: TextStyle(
@@ -183,7 +207,7 @@ class IdScreen extends StatelessWidget {
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text("ranchi jharkhand",
+                                Text("${driverData['address']}",
                                     style: TextStyle(
                                       color: Colors.white,
                                     ))

@@ -10,6 +10,8 @@ import '../api/regisrtApi.dart';
 import 'drawer.dart';
 
 // Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+Map pointData = {};
+
 class DashBoard extends StatefulWidget {
   const DashBoard({super.key});
 
@@ -110,6 +112,15 @@ class _DashBoardState extends State<DashBoard> {
     timer = Timer.periodic(
         const Duration(minutes: 5), (Timer t) => _getCurrentPosition());
     super.initState();
+    getPoints();
+  }
+
+  getPoints() async {
+    Map data = await callApi.fetchPoints();
+    if (data['status'] == true) {
+      pointData = data;
+      setState(() {});
+    }
   }
 
   // getlatlong() {

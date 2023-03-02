@@ -309,4 +309,146 @@ class RegisterApi {
       print(e);
     } finally {}
   }
+
+  Future<dynamic> getDriverId() async {
+    try {
+      final response = await client.post(
+        Uri.parse("$mainBaseUrl/driver/id"),
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": userCred.getApiToken(),
+        },
+      );
+      // log({"longitude": longitude, "latitude": latitude}.toString());
+      if (response.statusCode == 200) {
+        log(response.body);
+        return jsonDecode(response.body) as Map;
+      } else {
+        print('Request failed with status: ${response.statusCode}.');
+      }
+    } catch (e) {
+      print(e);
+    } finally {}
+  }
+
+  Future<dynamic> statusSetback(vehicleno) async {
+    try {
+      final response =
+          await client.post(Uri.parse("$mainBaseUrl/driver/status/setback"),
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": userCred.getApiToken(),
+              },
+              body: jsonEncode({"vehicleno": vehicleno}));
+      // log({"longitude": longitude, "latitude": latitude}.toString());
+      if (response.statusCode == 200) {
+        log(response.body);
+        return jsonDecode(response.body) as Map;
+      } else {
+        print('Request failed with status: ${response.statusCode}.');
+      }
+    } catch (e) {
+      print(e);
+    } finally {}
+  }
+
+  Future<dynamic> readyfornextload(vehicleno) async {
+    try {
+      final response = await client.post(
+          Uri.parse("$mainBaseUrl/driver/status/readyfornextload"),
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": userCred.getApiToken(),
+          },
+          body: jsonEncode({"vehicleno": vehicleno}));
+      // log({"longitude": longitude, "latitude": latitude}.toString());
+      if (response.statusCode == 200) {
+        log(response.body);
+        return jsonDecode(response.body) as Map;
+      } else {
+        print('Request failed with status: ${response.statusCode}.');
+      }
+    } catch (e) {
+      print(e);
+    } finally {}
+  }
+
+  Future<dynamic> getProfileData() async {
+    try {
+      final response = await client.get(
+        Uri.parse("$mainBaseUrl/driver/profile/view"),
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": userCred.getApiToken(),
+        },
+      );
+      // log({"longitude": longitude, "latitude": latitude}.toString());
+      if (response.statusCode == 200) {
+        log(response.body);
+        return jsonDecode(response.body) as Map;
+      } else {
+        print('Request failed with status: ${response.statusCode}.');
+      }
+    } catch (e) {
+      print(e);
+    } finally {}
+  }
+
+  Future<dynamic> statusUnloading({
+    booking,
+    lat,
+    long,
+    address,
+  }) async {
+    try {
+      final response =
+          await client.post(Uri.parse("$mainBaseUrl/driver/status/unloading"),
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": userCred.getApiToken(),
+              },
+              body: jsonEncode({
+                {
+                  "booking_id": "$booking",
+                  "latitude": "$lat",
+                  "longitude": "$long",
+                  "address": "$address"
+                }
+              }));
+      log(response.statusCode.toString());
+
+      // log({"longitude": longitude, "latitude": latitude}.toString());
+      if (response.statusCode == 200) {
+        log(response.body);
+        return jsonDecode(response.body) as Map;
+      } else {
+        print('Request failed with status: ${response.statusCode}.');
+      }
+    } catch (e) {
+      print(e);
+    } finally {}
+  }
+
+  Future<dynamic> fetchPoints() async {
+    try {
+      final response = await client.post(
+        Uri.parse("$mainBaseUrl/driver/balance/points"),
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": userCred.getApiToken(),
+        },
+      );
+      // log({"longitude": longitude, "latitude": latitude}.toString());
+      if (response.statusCode == 200) {
+        log(response.body);
+        return jsonDecode(response.body) as Map;
+      } else {
+        print('Request failed with status: ${response.statusCode}.');
+      }
+    } catch (e) {
+      print(e);
+    } finally {}
+  }
 }
+
+final callApi = RegisterApi();

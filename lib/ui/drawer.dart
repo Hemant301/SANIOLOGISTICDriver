@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:saniologisticdriver/ui/dashboard.dart';
 
 import '../util/blog.dart';
 
@@ -106,9 +107,9 @@ class _DrawerPageState extends State<DrawerPage> {
                   child: Center(
                     child: SizedBox(
                       width: MediaQuery.of(context).size.width - 30,
-                      child: const Center(
+                      child: Center(
                           child: Text(
-                        "150 poins",
+                        "${pointData['totalpoint']} points",
                         maxLines: 1,
                         style: TextStyle(
                             color: Colors.white,
