@@ -249,7 +249,7 @@ class RegisterApi {
   Future<dynamic> getNotifiation() async {
     try {
       final response = await client.get(
-        Uri.parse("$mainBaseUrl/customer/notifications"),
+        Uri.parse("$mainBaseUrl/driver/notifications"),
         headers: {
           "Content-Type": "application/json",
           "Authorization":
@@ -362,6 +362,27 @@ class RegisterApi {
           },
           body: jsonEncode({"vehicleno": vehicleno}));
       // log({"longitude": longitude, "latitude": latitude}.toString());
+      if (response.statusCode == 200) {
+        log(response.body);
+        return jsonDecode(response.body) as Map;
+      } else {
+        print('Request failed with status: ${response.statusCode}.');
+      }
+    } catch (e) {
+      print(e);
+    } finally {}
+  }
+
+  Future<dynamic> driverId() async {
+    try {
+      final response = await client.post(
+        Uri.parse("$mainBaseUrl/driver/id"),
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": userCred.getApiToken(),
+        },
+      );
+
       if (response.statusCode == 200) {
         log(response.body);
         return jsonDecode(response.body) as Map;

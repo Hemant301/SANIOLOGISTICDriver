@@ -76,11 +76,11 @@ class _DrawerPageState extends State<DrawerPage> {
                   child: Center(
                     child: SizedBox(
                       width: MediaQuery.of(context).size.width - 30,
-                      child: const Center(
+                      child: Center(
                           child: Text(
-                        "Hemant Kumar",
+                        getProfileData['name'],
                         maxLines: 1,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.green,
                             letterSpacing: 1,
                             fontWeight: FontWeight.bold,
@@ -111,7 +111,7 @@ class _DrawerPageState extends State<DrawerPage> {
                           child: Text(
                         "${pointData['totalpoint']} points",
                         maxLines: 1,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.white,
                             letterSpacing: 1,
                             fontWeight: FontWeight.bold,

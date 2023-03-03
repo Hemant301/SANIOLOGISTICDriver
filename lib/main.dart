@@ -5,6 +5,8 @@ import 'package:saniologisticdriver/ui/bottomNav.dart';
 import 'package:saniologisticdriver/ui/corporateload.dart';
 import 'package:saniologisticdriver/ui/dashboard.dart';
 import 'package:saniologisticdriver/ui/idScreen.dart';
+import 'package:saniologisticdriver/ui/imageview.dart';
+import 'package:saniologisticdriver/ui/loadingDetails.dart';
 import 'package:saniologisticdriver/ui/login.dart';
 import 'package:saniologisticdriver/ui/mybooking.dart';
 import 'package:saniologisticdriver/ui/notification.dart';
@@ -60,6 +62,8 @@ class MyApp extends StatelessWidget {
           "/addbankdetail": (context) => const AddbankDetails(),
           "/uploadDocument": (context) => const DocumentUpload(),
           // "/invoicescreen": (context) =>  GenerateInvoice.create(),
+          "/loadingDetails": (context) => const LoadingDetailsScreen(),
+          "/imageview": (context) => const GraphZoom(),
         });
   }
 }

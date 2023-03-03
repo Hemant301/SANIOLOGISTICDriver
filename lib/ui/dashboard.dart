@@ -5,12 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:saniologisticdriver/util/blog.dart';
 
 import '../api/regisrtApi.dart';
 import 'drawer.dart';
 
 // Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
 Map pointData = {};
+Map getProfileData = {};
 
 class DashBoard extends StatefulWidget {
   const DashBoard({super.key});
@@ -87,6 +89,16 @@ class _DashBoardState extends State<DashBoard> {
     });
   }
 
+  getProfile() async {
+    log("dfgvdgjvdfvfvhjfhjvfj");
+    RegisterApi api = RegisterApi();
+    Map data = await api.grtprofileDataApi();
+    setState(() {
+      getProfileData = data['data'];
+    });
+    log(getProfileData.toString());
+  }
+
   Future<void> _getAddressFromLatLng(Position position) async {
     await placemarkFromCoordinates(
             _currentPosition!.latitude, _currentPosition!.longitude)
@@ -107,6 +119,7 @@ class _DashBoardState extends State<DashBoard> {
 
   @override
   void initState() {
+    getProfile();
     // TODO: implement initState
     _onMapCreated;
     timer = Timer.periodic(
@@ -217,9 +230,9 @@ class _DashBoardState extends State<DashBoard> {
                             const SizedBox(
                               height: 5,
                             ),
-                            const Text(
-                              "Hemant Kumar",
-                              style: TextStyle(
+                            Text(
+                              userCred.getUserName(),
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold),
