@@ -121,7 +121,10 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                     child: TextField(
                                       controller: mobController,
+                                      keyboardType: TextInputType.number,
+                                      maxLength: 10,
                                       decoration: InputDecoration(
+                                        counterText: "",
                                         border: InputBorder.none,
                                         prefixIcon: Row(
                                           mainAxisSize: MainAxisSize.min,

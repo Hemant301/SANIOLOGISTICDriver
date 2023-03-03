@@ -219,6 +219,14 @@ class _DrawerPageState extends State<DrawerPage> {
                   },
                 ),
                 DrawerItem(
+                  name: "Related Document",
+                  image: "assets/profile.png",
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, "/relateddoc");
+                  },
+                ),
+                DrawerItem(
                   name: "Add Bank Details",
                   image: "assets/profile.png",
                   onTap: () {

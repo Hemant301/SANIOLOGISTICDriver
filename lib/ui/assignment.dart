@@ -1,8 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dropdown/flutter_dropdown.dart';
+import 'package:saniologisticdriver/api/regisrtApi.dart';
 
-class AssignmentScreen extends StatelessWidget {
+class AssignmentScreen extends StatefulWidget {
   const AssignmentScreen({super.key});
+
+  @override
+  State<AssignmentScreen> createState() => _AssignmentScreenState();
+}
+
+class _AssignmentScreenState extends State<AssignmentScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
+
+  List assignList = [];
+  getData() async {
+    Map data = await callApi.fetchassignmentList();
+    setState(() {
+      assignList = data['data'];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -269,17 +290,80 @@ class AssignmentScreen extends StatelessWidget {
                               fontSize: 18,
                               fontWeight: FontWeight.bold),
                         ),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               const Text(
-                                "Driver Name",
+                                "Primary Driver\nName",
                                 textAlign: TextAlign.start,
                                 style: TextStyle(
                                     color: Colors.black,
-                                    fontSize: 18,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              Center(
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  height: 30,
+                                  // width: MediaQuery.of(context).size.width - 60,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Colors.white,
+                                    border: Border.all(
+                                        color: const Color(0xff8F8F8F),
+                                        width: 2),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.1),
+                                        spreadRadius: 1,
+                                        blurRadius: 1,
+                                        offset: const Offset(
+                                            1, 3), // changes position of shadow
+                                      ),
+                                    ],
+                                  ),
+                                  child: DropDown(
+                                    showUnderline: false,
+                                    items: const [
+                                      "Hemant",
+                                      "santosh",
+                                      "Ravi",
+                                      "Ranjit"
+                                    ],
+                                    onChanged: (value) {
+                                      print(value);
+                                    },
+                                    hint: const Text("Select a Driver Name"),
+                                    icon: const Icon(
+                                      Icons.expand_more,
+                                      color: Colors.blue,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                "Secondary Driver\nName",
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold),
                               ),
                               const SizedBox(

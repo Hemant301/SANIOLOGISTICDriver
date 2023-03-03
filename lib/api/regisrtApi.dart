@@ -164,8 +164,7 @@ class RegisterApi {
         Uri.parse("$mainBaseUrl/driver/mybooking"),
         headers: {
           "Content-Type": "application/json",
-          "Authorization":
-              "ZaZCO3SeyRfEr4oQePEKmaC2ZMxabz1Tx2KeJialuUa1wuZvWiRFxWVsnk0g",
+          "Authorization": userCred.getApiToken(),
         },
       );
       print(userCred.getApiToken());
@@ -186,8 +185,7 @@ class RegisterApi {
         Uri.parse("$mainBaseUrl/driver/upcomingbooking"),
         headers: {
           "Content-Type": "application/json",
-          "Authorization":
-              "ZaZCO3SeyRfEr4oQePEKmaC2ZMxabz1Tx2KeJialuUa1wuZvWiRFxWVsnk0g",
+          "Authorization": userCred.getApiToken(),
         },
       );
       print(userCred.getApiToken());
@@ -208,10 +206,53 @@ class RegisterApi {
         Uri.parse("$mainBaseUrl/driver/ridestatus"),
         headers: {
           "Content-Type": "application/json",
-          "Authorization":
-              "ZaZCO3SeyRfEr4oQePEKmaC2ZMxabz1Tx2KeJialuUa1wuZvWiRFxWVsnk0g",
+          "Authorization": userCred.getApiToken(),
         },
       );
+      print(userCred.getApiToken());
+      if (response.statusCode == 200) {
+        log(response.body);
+        return jsonDecode(response.body) as Map;
+      } else {
+        print('Request failed with status: ${response.statusCode}.');
+      }
+    } catch (e) {
+      print(e);
+    } finally {}
+  }
+
+  Future<dynamic> fetchassignmentList() async {
+    try {
+      final response = await client.post(
+        Uri.parse("$mainBaseUrl/driver/assignment/list"),
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": userCred.getApiToken(),
+        },
+      );
+      print(userCred.getApiToken());
+      if (response.statusCode == 200) {
+        log(response.body);
+        return jsonDecode(response.body) as Map;
+      } else {
+        print('Request failed with status: ${response.statusCode}.');
+      }
+    } catch (e) {
+      print(e);
+    } finally {}
+  }
+
+  Future<dynamic> uploadDocs({title, expiryDate, docs}) async {
+    try {
+      final response = await client
+          .post(Uri.parse("$mainBaseUrl/booking/document/upload"), headers: {
+        // "Content-Type": "application/json",
+        "Authorization": userCred.getApiToken(),
+      }, body: {
+        "title": "$title",
+        "expirydate": "$expiryDate",
+        "documents": "$docs"
+      });
       print(userCred.getApiToken());
       if (response.statusCode == 200) {
         log(response.body);

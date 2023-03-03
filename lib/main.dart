@@ -14,6 +14,7 @@ import 'package:saniologisticdriver/ui/offer.dart';
 import 'package:saniologisticdriver/ui/otp.dart';
 import 'package:saniologisticdriver/ui/points.dart';
 import 'package:saniologisticdriver/ui/profile.dart';
+import 'package:saniologisticdriver/ui/relateddoc.dart';
 import 'package:saniologisticdriver/ui/signup.dart';
 import 'package:saniologisticdriver/ui/signup2.dart';
 import 'package:saniologisticdriver/ui/splash.dart';
@@ -64,6 +65,7 @@ class MyApp extends StatelessWidget {
           // "/invoicescreen": (context) =>  GenerateInvoice.create(),
           "/loadingDetails": (context) => const LoadingDetailsScreen(),
           "/imageview": (context) => const GraphZoom(),
+          "/relateddoc": (context) => const RelatedDocument(),
         });
   }
 }

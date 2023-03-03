@@ -54,7 +54,7 @@ class _MyProfileState extends State<MyProfile> {
             ),
           ),
         ],
-        title: const Text('MY Profile'),
+        title: const Text('My Profile'),
         centerTitle: true,
         // backgroundColor: Constant.primaryColor,
         flexibleSpace: Container(
@@ -88,11 +88,20 @@ class _MyProfileState extends State<MyProfile> {
                     ),
                   ),
                   child: Column(children: [
-                    Image.asset(
-                      "assets/profile.png",
-                      height: 100,
-                      width: 100,
+                    SizedBox(
+                      height: 15,
                     ),
+                    CircleAvatar(
+                      radius: 50,
+                      backgroundImage: NetworkImage(
+                        "${getProfileData['profile']}",
+                      ),
+                    ),
+                    // Image.network(
+                    //   "${getProfileData['profile']}",
+                    //   height: 100,
+                    //   width: 100,
+                    // ),
                     Text(
                       "${getProfileData['name']}",
                       style: const TextStyle(
@@ -157,7 +166,7 @@ class _MyProfileState extends State<MyProfile> {
                                   ),
                                   profileitem(
                                     title: "Vehicle",
-                                    disc: "JH17426",
+                                    disc: "null",
                                   ),
                                   profileitem(
                                     title: "Mobile No.",
@@ -182,7 +191,7 @@ class _MyProfileState extends State<MyProfile> {
                                       // "${getProfileData['date_of_birth'] ?? "N/A"}",
                                       ),
                                   profileitem(
-                                    title: "Pan No.",
+                                    title: "PAN",
                                     disc:
                                         "${getProfileData['pan_no'] ?? "N/A"}",
                                   ),
@@ -199,7 +208,7 @@ class _MyProfileState extends State<MyProfile> {
                                   profileitem(
                                     title: "Address",
                                     disc:
-                                        "${getProfileData['address']} ${getProfileData['city']} ${getProfileData['state']}" ??
+                                        "${getProfileData['address']} ${getProfileData['city']} ${getProfileData['state']} , ${getProfileData['pincode']}" ??
                                             "N/A",
                                   ),
                                 ])))),
@@ -236,11 +245,11 @@ class _MyProfileState extends State<MyProfile> {
                             height: 15,
                           ),
                           profileitem(
-                            title: "ESI",
+                            title: "ESI No.",
                             disc: "${getProfileData['esi_no'] ?? "N/A"}",
                           ),
                           profileitem(
-                            title: "PF",
+                            title: "PF No.",
                             disc: "${getProfileData['pf_no'] ?? "N/A"}",
                           ),
                           profileitem(
@@ -253,26 +262,26 @@ class _MyProfileState extends State<MyProfile> {
                             disc: "${getProfileData['spouse_name'] ?? "N/A"}",
                           ),
                           profileitem(
-                            title: "Father name",
+                            title: "Father's name",
                             disc: "${getProfileData['father_name'] ?? "N/A"}",
                           ),
                           profileitem(
-                              title: "Father DOB",
+                              title: "Father's DOB",
                               disc: DateFormat('dd-MM-yyyy')
                                   .format(DateTime.parse(
                                           getProfileData['f_dob'].toString()) ??
                                       DateTime.now())
                                   .toString()),
                           profileitem(
-                            title: "Mother Name",
+                            title: "Mother's Name",
                             disc: "${getProfileData['mother_name'] ?? "N/A"}",
                           ),
                           profileitem(
-                            title: "Mother DOB",
+                            title: "Mother's DOB",
                             disc: "${getProfileData['m_dob'] ?? "N/A"}",
                           ),
                           profileitem(
-                            title: "Spouse name",
+                            title: "Spouse's name",
                             disc: "${getProfileData['spouse_name'] ?? "N/A"}",
                           ),
                           profileitem(
@@ -280,7 +289,7 @@ class _MyProfileState extends State<MyProfile> {
                             disc: "${getProfileData['child1_name'] ?? "N/A"}",
                           ),
                           profileitem(
-                            title: "Child 2 DOB",
+                            title: "Child 1 DOB",
                             disc: "${getProfileData['c1_dob'] ?? "N/A"}",
                           ),
                           profileitem(
@@ -342,7 +351,7 @@ class _MyProfileState extends State<MyProfile> {
                                 "${getProfileData['bank_details']['account_number'] ?? "N/A"}",
                           ),
                           profileitem(
-                            title: "Ifsc code",
+                            title: "IFSC code",
                             disc:
                                 "${getProfileData['bank_details']['ifsc_code'] ?? "N/A"}",
                           ),
