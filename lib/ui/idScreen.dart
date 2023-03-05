@@ -268,6 +268,46 @@ class _IdScreenState extends State<IdScreen> {
                     arguments: {'img': driverData['pan_no'].toString()},
                   );
                 },
+              ),
+              IdData(
+                title: "Permit",
+                OnTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    "/imageview",
+                    arguments: {'img': driverData['permit'].toString()},
+                  );
+                },
+              ),
+              IdData(
+                title: "Insurance",
+                OnTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    "/imageview",
+                    arguments: {'img': driverData['insurance'].toString()},
+                  );
+                },
+              ),
+              IdData(
+                title: "Rc book",
+                OnTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    "/imageview",
+                    arguments: {'img': driverData['rc_book'].toString()},
+                  );
+                },
+              ),
+              IdData(
+                title: "Permit",
+                OnTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    "/imageview",
+                    arguments: {'img': driverData['permit'].toString()},
+                  );
+                },
               )
             ],
           ),
