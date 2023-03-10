@@ -1,9 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:saniologisticdriver/api/regisrtApi.dart';
 
 import '../shareFunction/consttext.dart';
 
-class NearByScreen extends StatelessWidget {
+class NearByScreen extends StatefulWidget {
   const NearByScreen({super.key});
+
+  @override
+  State<NearByScreen> createState() => _NearByScreenState();
+}
+
+class _NearByScreenState extends State<NearByScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    callDAra();
+  }
+
+  Map nearbyData = {};
+  callDAra() async {
+    Map data = await callApi.fetchNearby();
+    setState(() {
+      nearbyData = data['data'];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +103,7 @@ class NearByScreen extends StatelessWidget {
                       children: [
                         Row(
                           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
+                          children: [
                             Text(
                               "Dhaba                :  ",
                               style: TextStyle(
@@ -90,7 +111,7 @@ class NearByScreen extends StatelessWidget {
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold),
                             ),
-                            Text("5 KM")
+                            Text("${nearbyData['dhaba']} KM")
                           ],
                         ),
                         const SizedBox(
@@ -98,7 +119,7 @@ class NearByScreen extends StatelessWidget {
                         ),
                         Row(
                           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
+                          children: [
                             Text(
                               "Petrol Pump     :  ",
                               style: TextStyle(
@@ -106,7 +127,7 @@ class NearByScreen extends StatelessWidget {
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold),
                             ),
-                            Text("10 KM")
+                            Text("${nearbyData['petrolpump']} KM")
                           ],
                         ),
                         const SizedBox(
@@ -114,7 +135,7 @@ class NearByScreen extends StatelessWidget {
                         ),
                         Row(
                           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
+                          children: [
                             Text(
                               "Service Centre   :  ",
                               style: TextStyle(
@@ -122,7 +143,7 @@ class NearByScreen extends StatelessWidget {
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold),
                             ),
-                            Text("05 KM")
+                            Text("${nearbyData['servicecenter']} KM")
                           ],
                         ),
                         const SizedBox(
@@ -130,7 +151,7 @@ class NearByScreen extends StatelessWidget {
                         ),
                         Row(
                           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
+                          children: [
                             Text(
                               "Cover Distance  :  ",
                               style: TextStyle(
@@ -138,7 +159,7 @@ class NearByScreen extends StatelessWidget {
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold),
                             ),
-                            Text("245 KM")
+                            Text("${nearbyData['coverdistance']} KM")
                           ],
                         ),
                         const SizedBox(

@@ -122,6 +122,37 @@ class RegisterApi {
     } finally {}
   }
 
+  Future<dynamic> updateProfile(
+      {String? pan, license, aadhar, permit, insurance, rc, corporate}) async {
+    try {
+      final body = {
+        "pan_no": "12wewsdew",
+        "licence": "wewxwewz",
+        "aadhar_no": "1212",
+        "permit": "121",
+        "insurance": "2121",
+        "rc_book": "232",
+        "corporate_id": "2q32"
+      };
+      log(body.toString());
+      final response =
+          await client.post(Uri.parse("$mainBaseUrl/driver/update/profile"),
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": userCred.getApiToken(),
+              },
+              body: jsonEncode(body));
+      if (response.statusCode == 200) {
+        log(response.body);
+        return jsonDecode(response.body) as Map;
+      } else {
+        print('Request failed with status: ${response.statusCode}.');
+      }
+    } catch (e) {
+      print(e);
+    } finally {}
+  }
+
   Future<dynamic> addBankdetail(
       {String? bank_name,
       ifsc_code,
@@ -242,6 +273,27 @@ class RegisterApi {
     } finally {}
   }
 
+  Future<dynamic> fetchNearby() async {
+    try {
+      final response = await client.post(
+        Uri.parse("$mainBaseUrl/driver/nearby"),
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": userCred.getApiToken(),
+        },
+      );
+      print(userCred.getApiToken());
+      if (response.statusCode == 200) {
+        log(response.body);
+        return jsonDecode(response.body) as Map;
+      } else {
+        print('Request failed with status: ${response.statusCode}.');
+      }
+    } catch (e) {
+      print(e);
+    } finally {}
+  }
+
   Future<dynamic> uploadDocs({title, expiryDate, docs}) async {
     try {
       final response = await client
@@ -271,8 +323,7 @@ class RegisterApi {
         Uri.parse("$mainBaseUrl/driver/balance/points"),
         headers: {
           "Content-Type": "application/json",
-          "Authorization":
-              "ZaZCO3SeyRfEr4oQePEKmaC2ZMxabz1Tx2KeJialuUa1wuZvWiRFxWVsnk0g",
+          "Authorization": userCred.getApiToken(),
         },
       );
       print(userCred.getApiToken());
@@ -293,8 +344,7 @@ class RegisterApi {
         Uri.parse("$mainBaseUrl/driver/notifications"),
         headers: {
           "Content-Type": "application/json",
-          "Authorization":
-              "ZaZCO3SeyRfEr4oQePEKmaC2ZMxabz1Tx2KeJialuUa1wuZvWiRFxWVsnk0g",
+          "Authorization": userCred.getApiToken(),
         },
       );
       print(userCred.getApiToken());

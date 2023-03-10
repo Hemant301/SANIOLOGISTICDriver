@@ -39,7 +39,9 @@ class _MyProfileState extends State<MyProfile> {
       appBar: AppBar(
         actions: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, '/updateprofile');
+            },
             child: const Padding(
               padding: EdgeInsets.all(8.0),
               child: Center(

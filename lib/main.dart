@@ -20,6 +20,7 @@ import 'package:saniologisticdriver/ui/signup2.dart';
 import 'package:saniologisticdriver/ui/splash.dart';
 import 'package:saniologisticdriver/ui/status.dart';
 import 'package:saniologisticdriver/ui/upcomingBooking.dart';
+import 'package:saniologisticdriver/ui/updatePRofile.dart';
 import 'package:saniologisticdriver/ui/uploadDocument.dart';
 import 'package:saniologisticdriver/util/storage.dart';
 
@@ -66,6 +67,7 @@ class MyApp extends StatelessWidget {
           "/loadingDetails": (context) => const LoadingDetailsScreen(),
           "/imageview": (context) => const GraphZoom(),
           "/relateddoc": (context) => const RelatedDocument(),
+          "/updateprofile": (context) => const UpdateProfile(),
         });
   }
 }

@@ -50,7 +50,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
       ),
       body: Container(
         child: ListView.builder(
-            itemCount: 6,
+            itemCount: notificationData.length,
             itemBuilder: (context, index) {
               return InkWell(
                 onTap: () {
@@ -90,7 +90,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                               // ),
                               Row(
                                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: const [
+                                children: [
                                   Text(
                                     "Status             :  ",
                                     style: TextStyle(
@@ -98,7 +98,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold),
                                   ),
-                                  Text("booking configuration")
+                                  Text("${notificationData[index]['title']}")
                                 ],
                               ),
                               const SizedBox(
@@ -106,7 +106,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                               ),
                               Row(
                                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: const [
+                                children: [
                                   Text(
                                     "Booking Id     :  ",
                                     style: TextStyle(
@@ -114,7 +114,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold),
                                   ),
-                                  Text("1234hhf")
+                                  Text("${notificationData[index]['id']}")
                                 ],
                               ),
                               const SizedBox(

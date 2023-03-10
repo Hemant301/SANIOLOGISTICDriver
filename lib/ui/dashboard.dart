@@ -120,12 +120,21 @@ class _DashBoardState extends State<DashBoard> {
   @override
   void initState() {
     getProfile();
+    callDAra();
     // TODO: implement initState
     _onMapCreated;
     timer = Timer.periodic(
         const Duration(minutes: 5), (Timer t) => _getCurrentPosition());
     super.initState();
     getPoints();
+  }
+
+  Map nearbyData = {};
+  callDAra() async {
+    Map data = await callApi.fetchNearby();
+    setState(() {
+      nearbyData = data['data'];
+    });
   }
 
   getPoints() async {
@@ -242,7 +251,7 @@ class _DashBoardState extends State<DashBoard> {
                             ),
                             Row(
                               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
+                              children: [
                                 Text(
                                   "Dhaba                    :  ",
                                   style: TextStyle(
@@ -250,7 +259,7 @@ class _DashBoardState extends State<DashBoard> {
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text("data")
+                                Text("${nearbyData['dhaba']} KM")
                               ],
                             ),
                             const SizedBox(
@@ -258,7 +267,7 @@ class _DashBoardState extends State<DashBoard> {
                             ),
                             Row(
                               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
+                              children: [
                                 Text(
                                   "Petrol Pump         :  ",
                                   style: TextStyle(
@@ -266,7 +275,7 @@ class _DashBoardState extends State<DashBoard> {
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text("data")
+                                Text("${nearbyData['petrolpump']} KM")
                               ],
                             ),
                             const SizedBox(
@@ -274,7 +283,7 @@ class _DashBoardState extends State<DashBoard> {
                             ),
                             Row(
                               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
+                              children: [
                                 Text(
                                   "Cover Distance    :  ",
                                   style: TextStyle(
@@ -282,7 +291,7 @@ class _DashBoardState extends State<DashBoard> {
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text("data")
+                                Text("${nearbyData['coverdistance']} KM")
                               ],
                             ),
                             const SizedBox(
@@ -290,31 +299,15 @@ class _DashBoardState extends State<DashBoard> {
                             ),
                             Row(
                               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
+                              children: [
                                 Text(
-                                  "Remaining            :  ",
+                                  "Service center      :  ",
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text("data")
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Row(
-                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
-                                Text(
-                                  "Status                    :  ",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text("data")
+                                Text("${nearbyData['servicecenter']} KM")
                               ],
                             ),
                             const SizedBox(
